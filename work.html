@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Our Work | Bhagavan Enterprise</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;900&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+<script src="https://unpkg.com/lucide@latest"></script>
+<style>
+:root {
+  --gold: #F5C518;
+  --gold-light: #FFE066;
+  --gold-dark: #C9A000;
+  --bg-color: #0c0c0c;
+  --text-color: #FFFFFF;
+  --text-muted: rgba(255,255,255,0.7);
+  --glass-bg: rgba(255,255,255,0.04);
+  --glass-border: rgba(255,255,255,0.08);
+  --nav-bg: rgba(0,0,0,0.85);
+}
+body.light-mode {
+  --bg-color: #FFFFFF;
+  --text-color: #000000;
+  --text-muted: rgba(0,0,0,0.7);
+  --glass-bg: rgba(0,0,0,0.06);
+  --glass-border: rgba(0,0,0,0.1);
+  --nav-bg: rgba(255,255,255,0.98);
+}
+
+*{margin:0;padding:0;box-sizing:border-box;}html{scroll-behavior:smooth;}
+
+body{font-family:'DM Sans',sans-serif;background-color:var(--bg-color);color:var(--text-color);overflow-x:hidden;transition:background-color 0.4s, color 0.4s;
+background-image:linear-gradient(var(--glass-bg) 1px, transparent 1px), linear-gradient(90deg, var(--glass-bg) 1px, transparent 1px);
+background-size:60px 60px;
+animation:slideGrid 60s linear infinite;}
+
+@keyframes slideGrid {
+  from { background-position: 0 0; }
+  to { background-position: 60px 60px; }
+}
+
+nav.scrolled{background:var(--nav-bg) !important;box-shadow:0 10px 30px rgba(0,0,0,0.1) !important;} nav{position:fixed;top:0;left:0;width:100%;z-index:999;padding:16px 5%;display:flex;align-items:center;justify-content:space-between;backdrop-filter:blur(24px);-webkit-backdrop-filter:blur(24px);background:transparent;border-bottom:1px solid rgba(245,197,24,0.1);transition:all 0.4s;}
+.logo{display:flex;align-items:center;gap:10px;text-decoration:none;color:var(--text-color);}
+.logo-icon{width:40px;height:40px;background:linear-gradient(135deg,var(--gold),#C9A000);border-radius:10px;display:flex;align-items:center;justify-content:center;color:var(--dark);}
+.logo-icon i{width:22px;height:22px;}
+.logo-text{font-family:'Playfair Display',serif;font-size:1.1rem;font-weight:700;}
+.logo-text span{display:block;color:var(--gold);font-size:.7rem;font-family:'DM Sans',sans-serif;letter-spacing:2px;text-transform:uppercase;}
+.nav-back{color:var(--text-muted);text-decoration:none;font-size:.95rem;transition:color .3s;display:flex;align-items:center;gap:6px;}
+.nav-back i{width:18px;height:18px;}
+.nav-back:hover{color:var(--gold);}
+.page-hero{padding:140px 5% 60px;text-align:center;background:transparent;border-bottom:1px solid rgba(255,255,255,0.05);}
+.page-hero h1{font-family:'Playfair Display',serif;font-size:3rem;margin-bottom:16px;}
+.page-hero p{color:var(--text-color);font-size:1.1rem;}
+.gallery-section{padding:80px 5%;}
+
+.gallery-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 24px; }
+.gallery-item { aspect-ratio: 1; border-radius: 20px; overflow: hidden; position: relative; border:1px solid var(--glass-border); }
+.gallery-item img { width: 100%; height: 100%; object-fit: cover; display: block; transition: transform 0.6s ease; }
+.gallery-item:hover img { transform: scale(1.08); }
+.gallery-item::after { content: ''; position: absolute; inset: 0; background: linear-gradient(to top, rgba(0,0,0,0.5), transparent 50%); pointer-events: none; opacity: 0; transition: opacity 0.4s; }
+.gallery-item:hover::after { opacity: 1; }
+
+.reveal{opacity:0;transform:translateY(40px);transition:opacity .8s, transform .8s;}
+.reveal.visible{opacity:1;transform:translateY(0);}
+footer{background:transparent;padding:60px 5% 30px;text-align:center;}
+footer p{font-size:.9rem;color:rgba(255,255,255,.4);line-height:1.7;}
+footer a{color:var(--gold);text-decoration:none;}
+
+@keyframes slideUp { from {opacity:0; transform:translateY(20px);} to {opacity:1; transform:translateY(0);} }
+h1, h2, h3 { animation: slideUp 0.8s ease-out forwards; }
+.section-label { animation: slideUp 0.8s ease-out 0.2s forwards; opacity:0; }
+
+.service-card {
+  background-position: top center !important;
+  background-size: 100% 220px !important;
+  background-repeat: no-repeat !important;
+  background-color: var(--glass-bg) !important;
+  border: 1px solid var(--glass-border);
+  border-radius: 24px;
+  padding: 24px;
+  padding-top: 244px; /* 220px image + 24px padding */
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  text-decoration: none;
+  color: var(--text-color) !important;
+  box-shadow: none !important;
+  transition: all 0.4s;
+  position: relative;
+  overflow: hidden;
+}
+.service-card h3 { color: var(--text-color) !important; text-shadow: none !important; font-size:1.3rem; margin-top:8px; margin-bottom:8px;}
+.service-card p { color: var(--text-muted) !important; text-shadow: none !important; margin:0;}
+.service-card i { color: var(--gold); width:32px; height:32px; margin-bottom: 0px; box-shadow: none !important; }
+.service-card:hover { transform: translateY(-8px); border-color: var(--gold); }
+.service-card::after, .service-card::before { display: none !important; }
+
+</style>
+</head>
+<body>
+<nav>
+  <a href="home.html" class="logo">
+    <div class="logo-icon"><i data-lucide="shield-check"></i></div>
+    <div class="logo-text">Bhagavan Enterprise<span>Premium Quality</span></div>
+  </a>
+  <a href="home.html" class="nav-back"><i data-lucide="arrow-left"></i> Back to Home</a>
+</nav>
+<header class="page-hero">
+  <h1>Our Past Installations</h1>
+  <p>A complete showcase of our premium safety net and invisible grill projects.</p>
+</header>
+<section class="gallery-section">
+  <div class="gallery-grid">
+    <div class="gallery-item reveal"><img src="assets/work_images/work_1.jpg" alt="Installation Work"></div>
+    <div class="gallery-item reveal"><img src="assets/work_images/work_10.jpg" alt="Installation Work"></div>
+    <div class="gallery-item reveal"><img src="assets/work_images/work_13.jpg" alt="Installation Work"></div>
+    <div class="gallery-item reveal"><img src="assets/work_images/work_17.jpg" alt="Installation Work"></div>
+    <div class="gallery-item reveal"><img src="assets/work_images/work_18.jpg" alt="Installation Work"></div>
+    <div class="gallery-item reveal"><img src="assets/work_images/work_19.jpg" alt="Installation Work"></div>
+    <div class="gallery-item reveal"><img src="assets/work_images/work_2.jpg" alt="Installation Work"></div>
+    <div class="gallery-item reveal"><img src="assets/work_images/work_20.jpg" alt="Installation Work"></div>
+    <div class="gallery-item reveal"><img src="assets/work_images/work_21.jpg" alt="Installation Work"></div>
+    <div class="gallery-item reveal"><img src="assets/work_images/work_22.jpg" alt="Installation Work"></div>
+    <div class="gallery-item reveal"><img src="assets/work_images/work_23.jpg" alt="Installation Work"></div>
+    <div class="gallery-item reveal"><img src="assets/work_images/work_3.jpg" alt="Installation Work"></div>
+    <div class="gallery-item reveal"><img src="assets/work_images/work_4.jpg" alt="Installation Work"></div>
+    <div class="gallery-item reveal"><img src="assets/work_images/work_5.jpg" alt="Installation Work"></div>
+    <div class="gallery-item reveal"><img src="assets/work_images/work_6.jpg" alt="Installation Work"></div>
+    <div class="gallery-item reveal"><img src="assets/work_images/work_7.jpg" alt="Installation Work"></div>
+    <div class="gallery-item reveal"><img src="assets/work_images/work_8.jpg" alt="Installation Work"></div>
+    <div class="gallery-item reveal"><img src="assets/work_images/work_9.jpg" alt="Installation Work"></div>
+  </div>
+</section>
+
+<footer>
+  <div class="footer-grid" style="grid-template-columns: repeat(3, 1fr); gap: 60px; margin-bottom: 60px;">
+    <div class="footer-col">
+      <h4>Services</h4>
+      <ul>
+        <li><a href="pages/balcony-safety-nets.html"><i data-lucide="chevron-right" style="width:14px;"></i> Balcony Nets</a></li>
+        <li><a href="pages/pigeon-nets.html"><i data-lucide="chevron-right" style="width:14px;"></i> Pigeon Nets</a></li>
+        <li><a href="pages/bird-protection-nets.html"><i data-lucide="chevron-right" style="width:14px;"></i> Bird Protection</a></li>
+        <li><a href="pages/monkey-nets.html"><i data-lucide="chevron-right" style="width:14px;"></i> Monkey Nets</a></li>
+        <li><a href="pages/invisible-grill.html"><i data-lucide="chevron-right" style="width:14px;"></i> Invisible Grill</a></li>
+      </ul>
+    </div>
+    <div class="footer-col">
+      <h4>More Services</h4>
+      <ul>
+        <li><a href="pages/building-safety-nets.html"><i data-lucide="chevron-right" style="width:14px;"></i> Building Nets</a></li>
+        <li><a href="pages/cricket-nets.html"><i data-lucide="chevron-right" style="width:14px;"></i> Cricket Nets</a></li>
+        <li><a href="pages/sports-nets.html"><i data-lucide="chevron-right" style="width:14px;"></i> Sports Nets</a></li>
+        <li><a href="pages/mosquito-nets.html"><i data-lucide="chevron-right" style="width:14px;"></i> Mosquito Nets</a></li>
+        <li><a href="pages/shade-nets.html"><i data-lucide="chevron-right" style="width:14px;"></i> Shade Nets</a></li>
+      </ul>
+    </div>
+    <div class="footer-col">
+      <h4>Contact</h4>
+      <ul>
+        <li><a href="tel:9743236279"><i data-lucide="phone" style="width:14px;"></i> 9743236279</a></li>
+        <li><a href="mailto:bhagavansafetynets@gmail.com"><i data-lucide="mail" style="width:14px;"></i> Email Us</a></li>
+        <li><a href="https://wa.me/919743236279"><i data-lucide="message-circle" style="width:14px;"></i> WhatsApp</a></li>
+      </ul>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <div style="display:flex;align-items:center;gap:12px;">
+      <div class="logo-icon" style="width:32px;height:32px;"><i data-lucide="shield-check" style="width:16px;"></i></div>
+      <span style="font-family:'Playfair Display',serif;font-weight:700;">Bhagavan Enterprise</span>
+    </div>
+    <p style="margin:0;">© 2025 Bhagavan Enterprise. All Rights Reserved.</p>
+    <div class="footer-social">
+      <a href="https://wa.me/919743236279" class="social-btn"><i data-lucide="message-circle"></i></a>
+      <a href="tel:9743236279" class="social-btn"><i data-lucide="phone"></i></a>
+    </div>
+  </div>
+</footer>
+
+<script>
+function toggleTheme() {
+  document.body.classList.toggle('light-mode');
+  const isLight = document.body.classList.contains('light-mode');
+  const icon = document.querySelector('.theme-toggle i');
+  if(icon) {
+    icon.setAttribute('data-lucide', isLight ? 'moon' : 'sun');
+    lucide.createIcons();
+  }
+  localStorage.setItem('theme', isLight ? 'light' : 'dark');
+}
+if(localStorage.getItem('theme') === 'light') {
+  document.body.classList.add('light-mode');
+}
+</script>
+<script>
+lucide.createIcons();
+const observer = new IntersectionObserver(entries => entries.forEach(e => { if(e.isIntersecting) e.target.classList.add('visible'); }), {threshold:0.1});
+document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+</script>
+</body>
+</html>

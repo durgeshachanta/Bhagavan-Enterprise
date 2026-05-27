@@ -1,0 +1,520 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Garware & Tuf Nets | Bhagavan Enterprise</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;900&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+<script src="https://unpkg.com/lucide@latest"></script>
+<style>
+:root {
+  --gold: #F5C518;
+  --gold-light: #FFE066;
+  --gold-dark: #C9A000;
+  --bg-color: #0c0c0c;
+  --text-color: #FFFFFF;
+  --text-muted: rgba(255,255,255,0.7);
+  --glass-bg: rgba(255,255,255,0.04);
+  --glass-border: rgba(255,255,255,0.08);
+  --nav-bg: rgba(0,0,0,0.85);
+}
+body.light-mode {
+  --bg-color: #f7f7f7;
+  --text-color: #111111;
+  --text-muted: rgba(0,0,0,0.7);
+  --glass-bg: rgba(0,0,0,0.04);
+  --glass-border: rgba(0,0,0,0.1);
+  --nav-bg: rgba(245,245,245,0.98);
+}
+
+
+*{margin:0;padding:0;box-sizing:border-box;}html{scroll-behavior:smooth;}
+
+body{font-family:'DM Sans',sans-serif;background-color:var(--bg-color);color:var(--text-color);overflow-x:hidden;transition:background-color 0.4s, color 0.4s;
+background-image:linear-gradient(var(--glass-bg) 1px, transparent 1px), linear-gradient(90deg, var(--glass-bg) 1px, transparent 1px);
+background-size:60px 60px;
+animation:slideGrid 60s linear infinite;}
+
+@keyframes slideGrid {
+  from { background-position: 0 0; }
+  to { background-position: 60px 60px; }
+}
+
+
+@keyframes slideGrid {
+  from { background-position: 0 0; }
+  to { background-position: 60px 60px; }
+}
+
+nav.scrolled{background:var(--nav-bg) !important;box-shadow:0 10px 30px rgba(0,0,0,0.1) !important;} nav{position:fixed;top:0;left:0;width:100%;z-index:999;padding:16px 5%;display:flex;align-items:center;justify-content:space-between;backdrop-filter:blur(24px);-webkit-backdrop-filter:blur(24px);background:transparent;border-bottom:1px solid rgba(245,197,24,0.1);transition:all 0.4s;}
+.logo{display:flex;align-items:center;gap:10px;text-decoration:none;color:var(--text-color);}
+.logo-icon{width:40px;height:40px;background:linear-gradient(135deg,var(--gold),#C9A000);border-radius:10px;display:flex;align-items:center;justify-content:center;color:var(--dark);}
+.logo-icon i{width:22px;height:22px;}
+.logo-text{font-family:'Playfair Display',serif;font-size:1.1rem;font-weight:700;}
+.logo-text span{display:block;color:var(--gold);font-size:.7rem;font-family:'DM Sans',sans-serif;letter-spacing:2px;text-transform:uppercase;}
+.nav-back{color:var(--text-muted);text-decoration:none;font-size:.95rem;transition:color .3s;display:flex;align-items:center;gap:6px;}
+.nav-back i{width:18px;height:18px;}
+.nav-back:hover{color:var(--gold);}
+.nav-cta{background:linear-gradient(135deg,var(--gold),#C9A000);color:var(--dark);padding:10px 24px;border-radius:50px;font-weight:700;font-size:.9rem;text-decoration:none;display:flex;align-items:center;gap:6px;}
+
+/* Mobile Menu Button */
+.mobile-menu-btn{display:none;background:none;border:none;color:var(--text-color);cursor:pointer;padding:8px;}
+.mobile-nav-overlay{position:fixed;inset:0;background:var(--nav-bg);backdrop-filter:blur(10px);z-index:998;display:flex;flex-direction:column;align-items:center;justify-content:center;opacity:0;pointer-events:none;transition:opacity .3s;}
+.mobile-nav-overlay.active{opacity:1;pointer-events:auto;}
+.mobile-nav-overlay ul{list-style:none;text-align:center;display:flex;flex-direction:column;gap:30px;}
+.mobile-nav-overlay ul a{color:var(--text-color);font-size:1.5rem;text-decoration:none;font-family:'Playfair Display',serif;font-weight:700;}
+
+/* HERO */
+.service-hero{min-height:65vh;display:flex;align-items:center;padding:140px 5% 100px;position:relative;overflow:hidden;}
+.hero-bg{position:absolute;inset:0;background: url('../assets/generated/bg_garware.png') center/cover;z-index:0;}
+.hero-orb{position:absolute;width:500px;height:500px;border-radius:50%;background:radial-gradient(circle,rgba(245,197,24,.15),transparent 70%);right:-80px;top:50%;transform:translateY(-50%);z-index:1;}
+.hero-content{position:relative;z-index:2;max-width:750px;}
+.breadcrumb{font-size:.85rem;color: var(--text-muted);margin-bottom:20px;}
+.breadcrumb a{color:var(--gold);text-decoration:none;}
+.service-badge{display:inline-flex;align-items:center;gap:8px;background:rgba(245,197,24,.1);border:1px solid rgba(245,197,24,.25);color:var(--gold);padding:8px 18px;border-radius:50px;font-size:.8rem;font-weight:700;letter-spacing:1px;text-transform:uppercase;margin-bottom:24px;}
+.service-badge i{width:16px;height:16px;}
+.hero-content h1{font-family:'Playfair Display',serif;font-size:clamp(2.6rem,5vw,4.5rem);font-weight:900;line-height:1.15;margin-bottom:24px;}
+.hero-content h1 .accent{color:var(--gold);background:linear-gradient(90deg,var(--gold),#FFD700);-webkit-background-clip:text;-webkit-text-fill-color:transparent;}
+.hero-content p{font-size:1.1rem;color: var(--text-muted);line-height:1.8;margin-bottom:40px;max-width:600px;}
+.hero-btns{display:flex;gap:16px;flex-wrap:wrap;}
+.btn-primary{position:relative;overflow:hidden;background:linear-gradient(135deg,var(--gold),#C9A000);color:var(--dark);padding:14px 32px;border-radius:50px;font-weight:700;font-size:1rem;text-decoration:none;display:inline-flex;align-items:center;gap:10px;transition:all .4s cubic-bezier(0.175, 0.885, 0.32, 1.275);border:1px solid var(--glass-border);box-shadow:0 8px 25px rgba(245,197,24,0.25);}
+.btn-primary::before{content:'';position:absolute;top:0;left:-100%;width:50%;height:100%;background:linear-gradient(90deg,transparent,rgba(255,255,255,0.6),transparent);transform:skewX(-25deg);animation:shine 3s infinite;}
+@keyframes shine{0%{left:-100%;}20%{left:200%;}100%{left:200%;}}
+.btn-primary:hover{background:linear-gradient(135deg,var(--gold-light),var(--gold));transform:translateY(-4px) scale(1.02);box-shadow:0 15px 40px rgba(245,197,24,0.45);border-color:var(--text-muted);}
+.btn-primary i{width:18px;height:18px;}
+.btn-outline{border:1.5px solid rgba(255,255,255,.25);color:var(--text-color);padding:14px 32px;border-radius:50px;font-weight:600;font-size:1rem;text-decoration:none;display:inline-flex;align-items:center;gap:10px;transition:all .3s;}
+.btn-outline:hover{border-color:var(--gold);color:var(--gold);background:rgba(245,197,24,0.05);}
+
+/* CONTENT */
+section{padding:100px 5%;}
+.section-label{font-size:.8rem;font-weight:700;letter-spacing:3px;text-transform:uppercase;color:var(--gold);margin-bottom:16px;display:flex;align-items:center;gap:8px;}
+.section-label i{width:16px;height:16px;}
+.section-title{font-family:'Playfair Display',serif;font-size:clamp(2rem,3.5vw,3rem);font-weight:700;line-height:1.2;margin-bottom:20px;}
+.section-sub{color: var(--text-muted);font-size:1.1rem;line-height:1.7;}
+
+/* FEATURES */
+.features-section{background:transparent;}
+.features-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:28px;margin-top:56px;}
+.feature-card{background:var(--glass-bg);backdrop-filter:blur(14px);border:1px solid var(--glass-border);border-radius:24px;padding:32px;transition:all .4s;position:relative;overflow:hidden;}
+.feature-card::after{content:'';position:absolute;top:0;left:-100%;width:50%;height:100%;background:linear-gradient(90deg,transparent,rgba(255,255,255,0.08),transparent);transform:skewX(-25deg);transition:all 0.7s ease;}
+.feature-card:hover::after{left:200%;}
+.feature-card:hover{border-color: var(--gold);transform:translateY(-6px);box-shadow:0 20px 40px rgba(0,0,0,0.3);}
+.feature-icon{color:var(--gold);margin-bottom:18px;}
+.feature-icon i{width:36px;height:36px;}
+.feature-card h3{font-size:1.15rem;font-weight:700;margin-bottom:12px;}
+.feature-card p{font-size:.95rem;color: var(--text-muted);line-height:1.7;}
+
+/* ABOUT CONTENT */
+.about-section{background:transparent;}
+.about-grid{display:grid;grid-template-columns:1fr 1fr;gap:80px;align-items:center;}
+.about-img-box{background:linear-gradient(135deg,rgba(245,197,24,.1),rgba(245,197,24,.02));border:1px solid rgba(245,197,24,.2);border-radius:32px;padding:56px;position:relative;text-align:center;}
+.about-img-box .big-icon{color:var(--gold);display:block;margin-bottom:24px;}
+.about-img-box .big-icon i{width:80px;height:80px;}
+.about-img-box h3{font-family:'Playfair Display',serif;font-size:1.6rem;margin-bottom:12px;}
+.about-img-box p{font-size:.95rem;color: var(--text-muted);line-height:1.7;}
+.about-img-box .stat-row{display:flex;gap:40px;justify-content:center;margin-top:36px;}
+.stat-box{text-align:center;}
+.stat-box .num{font-family:'Playfair Display',serif;font-size:2rem;font-weight:700;color:var(--gold);}
+.stat-box .lbl{font-size:.75rem;color: var(--text-muted);text-transform:uppercase;letter-spacing:1px;margin-top:4px;font-weight:600;}
+.about-text h2{font-family:'Playfair Display',serif;font-size:clamp(1.8rem,3vw,2.8rem);margin-bottom:24px;line-height:1.25;}
+.about-text p{color: var(--text-muted);line-height:1.8;margin-bottom:20px;font-size:1.05rem;}
+.checklist{list-style:none;display:flex;flex-direction:column;gap:14px;margin-top:32px;}
+.checklist li{display:flex;align-items:center;gap:14px;font-size:1rem;color: var(--text-muted);font-weight:500;}
+.checklist li i{color:var(--gold);width:20px;height:20px;}
+
+/* TYPES */
+.types-section{background:transparent;}
+.types-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:24px;margin-top:56px;}
+.type-card{background:var(--glass-bg);border:1px solid var(--glass-border);border-radius:24px;padding:36px;display:flex;gap:24px;align-items:flex-start;transition:all .3s;}
+.type-card:hover{border-color: var(--gold);background:var(--glass-bg);}
+.type-num{font-family:'Playfair Display',serif;font-size:2.5rem;font-weight:700;color:rgba(245,197,24,.2);flex-shrink:0;}
+.type-card h4{font-size:1.15rem;font-weight:700;margin-bottom:10px;}
+.type-card p{font-size:.95rem;color: var(--text-muted);line-height:1.6;}
+
+/* PRICING */
+.pricing-section{background:transparent;}
+.pricing-note{background:rgba(245,197,24,.06);border:1px solid rgba(245,197,24,.2);border-radius:24px;padding:36px;margin-top:48px;display:flex;align-items:flex-start;gap:20px;}
+.pricing-note .icon{color:var(--gold);flex-shrink:0;}
+.pricing-note .icon i{width:32px;height:32px;}
+.pricing-note h4{font-size:1.1rem;font-weight:700;margin-bottom:10px;}
+.pricing-note p{font-size:1rem;color: var(--text-muted);line-height:1.7;}
+
+/* FAQ */
+.faq-section{background:transparent;}
+.faq-list{margin-top:48px;display:flex;flex-direction:column;gap:20px;}
+.faq-item{background:var(--glass-bg);border:1px solid var(--glass-border);border-radius:20px;overflow:hidden;transition:all .3s;}
+.faq-item:hover{border-color: var(--gold);}
+.faq-q{padding:24px 32px;cursor:pointer;display:flex;justify-content:space-between;align-items:center;font-weight:600;font-size:1.05rem;}
+.faq-q:hover{color:var(--gold);}
+.faq-icon{color:var(--gold);transition:transform .3s;flex-shrink:0;}
+.faq-icon i{width:20px;height:20px;}
+.faq-a{padding:0 32px;max-height:0;overflow:hidden;transition:max-height .4s ease,padding .4s;}
+.faq-a p{font-size:.95rem;color: var(--text-muted);line-height:1.8;padding-bottom:24px;}
+.faq-item.open .faq-a{max-height:300px;}
+.faq-item.open .faq-icon{transform:rotate(180deg);}
+
+
+
+
+/* ---- SERVICES GRID ---- */
+.services-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 24px; margin-top: 48px; }
+.gallery-section { background: transparent; }
+.gallery-grid.single-row { display: grid; grid-template-columns: repeat(5, 1fr); gap: 20px; margin-top: 40px; }
+.gallery-item { aspect-ratio: 1; border-radius: 16px; overflow: hidden; position: relative; border:1px solid var(--glass-border); }
+.gallery-item img { width: 100%; height: 100%; object-fit: cover; display: block; transition: transform 0.6s ease; }
+.gallery-item:hover img { transform: scale(1.08); }
+
+@media(max-width: 1200px) {
+  .services-grid { grid-template-columns: repeat(3, 1fr); }
+}
+@media(max-width: 1024px) {
+  .services-grid { grid-template-columns: repeat(2, 1fr); }
+  .gallery-grid.single-row { grid-template-columns: repeat(3, 1fr); }
+}
+@media(max-width: 768px) {
+  .services-grid { grid-template-columns: 1fr; }
+  .gallery-grid.single-row { display: flex; overflow-x: auto; scroll-snap-type: x mandatory; padding-bottom: 16px; gap: 16px; }
+  .gallery-item { flex: 0 0 85%; scroll-snap-align: center; }
+  .gallery-grid.single-row::-webkit-scrollbar { height: 4px; }
+  .gallery-grid.single-row::-webkit-scrollbar-track { background:var(--glass-bg); }
+  .gallery-grid.single-row::-webkit-scrollbar-thumb { background: var(--gold); border-radius: 4px; }
+}
+
+/* OTHER SERVICES */
+
+.other-services{background:transparent;}
+.other-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(240px,1fr));gap:20px;margin-top:48px;}
+.other-card{background:var(--glass-bg);border:1px solid var(--glass-border);border-radius:20px;padding:24px;text-decoration:none;color:var(--text-color);transition:all .4s;display:flex;align-items:center;gap:16px;}
+.other-card:hover{border-color: var(--gold);transform:translateY(-4px);background:var(--glass-bg);}
+.other-card i{color:var(--gold);width:24px;height:24px;}
+.other-card span{font-size:.95rem;font-weight:600;}
+
+/* CTA */
+.cta-section{background:transparent;}
+.cta-box{background:linear-gradient(135deg,rgba(245,197,24,.12),rgba(245,197,24,.02));border:1px solid rgba(245,197,24,.2);border-radius:40px;padding:80px 5%;text-align:center;position:relative;overflow:hidden;}
+.cta-box::before{content:'';position:absolute;inset:0;background:radial-gradient(circle at 50% 0%,rgba(245,197,24,.15),transparent 60%);}
+.cta-box h2{font-family:'Playfair Display',serif;font-size:clamp(2rem,4vw,3.2rem);margin-bottom:20px;position:relative;}
+.cta-box p{color: var(--text-muted);margin-bottom:40px;font-size:1.1rem;position:relative;max-width:600px;margin-left:auto;margin-right:auto;}
+.cta-actions{display:flex;gap:20px;justify-content:center;flex-wrap:wrap;position:relative;}
+
+/* FOOTER */
+footer{background:transparent;padding:60px 5% 30px;border-top:1px solid rgba(255,255,255,.05);text-align:center;}
+footer p{font-size:.9rem;color: var(--text-muted);line-height:1.7;}
+footer a{color:var(--gold);text-decoration:none;font-weight:500;}
+
+/* WA Float */
+.wa-float{position:fixed;bottom:32px;right:32px;z-index:1000;display:flex;flex-direction:column;align-items:flex-end;gap:12px;}
+.wa-btn{width:64px;height:64px;background:#25D366;border-radius:50%;display:flex;align-items:center;justify-content:center;text-decoration:none;color:var(--text-color);box-shadow:0 8px 30px rgba(37,211,102,.4);animation:bounce 2s ease infinite;transition:transform .3s;}
+.wa-btn i{width:32px;height:32px;}
+.wa-btn:hover{transform:scale(1.1);}
+.call-btn{width:56px;height:56px;background:var(--gold);border-radius:50%;display:flex;align-items:center;justify-content:center;text-decoration:none;color:var(--dark);box-shadow:0 8px 30px rgba(245,197,24,.4);transition:transform .3s;}
+.call-btn i{width:28px;height:28px;}
+.call-btn:hover{transform:scale(1.1);}
+@keyframes bounce{0%,100%{transform:translateY(0);}50%{transform:translateY(-8px);}}
+
+.reveal{opacity:0;transform:translateY(40px);transition:opacity .8s cubic-bezier(0.165, 0.84, 0.44, 1), transform .8s cubic-bezier(0.165, 0.84, 0.44, 1);}
+.reveal.visible{opacity:1;transform:translateY(0);}
+
+/* MOBILE */
+@media(max-width:1024px){
+
+  
+
+  .features-grid{grid-template-columns:1fr 1fr;}
+  .about-grid{grid-template-columns:1fr;gap:48px;}
+  .types-grid{grid-template-columns:1fr;}
+}
+@media(max-width:768px){
+  nav{position:fixed;top:0;left:0;width:100%;z-index:999;padding:16px 5%;display:flex;align-items:center;justify-content:space-between;backdrop-filter:blur(24px);-webkit-backdrop-filter:blur(24px);background:transparent;border-bottom:1px solid rgba(245,197,24,0.1);transition:all 0.4s;}
+  .nav-back, .nav-cta{display:none;}
+  .mobile-menu-btn{display:block;}
+  .features-grid{grid-template-columns:1fr;}
+  .service-hero{padding-top:120px;text-align:center;}
+  .hero-btns{justify-content:center;}
+  section{padding:80px 5%;}
+  .about-img-box .stat-row{flex-wrap:wrap;gap:24px;}
+  .pricing-note{flex-direction:column;align-items:center;text-align:center;}
+  .cta-box{padding:60px 5%;border-radius:32px;}
+  .wa-float{bottom:24px;right:24px;}
+  .wa-btn{width:56px;height:56px;}
+  .wa-btn i{width:28px;height:28px;}
+}
+
+@keyframes slideUp { from {opacity:0; transform:translateY(20px);} to {opacity:1; transform:translateY(0);} }
+h1, h2, h3 { animation: slideUp 0.8s ease-out forwards; }
+.section-label { animation: slideUp 0.8s ease-out 0.2s forwards; opacity:0; }
+
+.service-card {
+  background-position: top center !important;
+  background-size: 100% 220px !important;
+  background-repeat: no-repeat !important;
+  background-color: var(--glass-bg) !important;
+  border: 1px solid var(--glass-border);
+  border-radius: 24px;
+  padding: 24px;
+  padding-top: 244px; /* 220px image + 24px padding */
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  text-decoration: none;
+  color: var(--text-color) !important;
+  box-shadow: none !important;
+  transition: all 0.4s;
+  position: relative;
+  overflow: hidden;
+}
+.service-card h3 { color: var(--text-color) !important; text-shadow: none !important; font-size:1.3rem; margin-top:8px; margin-bottom:8px;}
+.service-card p { color: var(--text-muted) !important; text-shadow: none !important; margin:0;}
+.service-card i { color: var(--gold); width:32px; height:32px; margin-bottom: 0px; box-shadow: none !important; }
+.service-card:hover { transform: translateY(-8px); border-color: var(--gold); }
+.service-card::after, .service-card::before { display: none !important; }
+
+</style>
+</head>
+<body>
+
+<nav>
+  <a href="../home.html" class="logo">
+    <div class="logo-icon"><i data-lucide="shield-check"></i></div>
+    <div class="logo-text">Bhagavan Enterprise<span>Premium Quality</span></div>
+  </a>
+  <a href="../home.html" class="nav-back"><i data-lucide="arrow-left"></i> Back to Home</a>
+  <div style="display:flex;align-items:center;">
+    <button class="theme-toggle" onclick="toggleTheme()" aria-label="Toggle Theme" style="background:none;border:none;color:var(--text-color);cursor:pointer;margin-right:16px;display:flex;"><i data-lucide="sun"></i></button>
+    <a href="tel:9743236279" class="nav-cta"><i data-lucide="phone"></i> Call Now</a>
+  </div>
+  <button class="mobile-menu-btn" onclick="toggleMenu()"><i data-lucide="menu"></i></button>
+</nav>
+
+<!-- MOBILE NAV -->
+<div class="mobile-nav-overlay" id="mobileNav">
+  <button class="mobile-menu-btn" style="position:absolute;top:24px;right:5%;" onclick="toggleMenu()"><i data-lucide="x" style="width:32px;height:32px;"></i></button>
+  <ul>
+    <li><a href="../home.html">Home</a></li>
+    <li><a href="../home.html#services">All Services</a></li>
+    <li><a href="tel:9743236279">Call Us</a></li>
+  </ul>
+</div>
+
+<section class="service-hero">
+  <div class="hero-bg"></div>
+  <div class="hero-orb"></div>
+  <div class="hero-content">
+    <div class="breadcrumb"><a href="../home.html">Home</a> › <a href="../home.html#services">Services</a> › Garware & Tuf Nets</div>
+    <div class="service-badge"><i data-lucide="star"></i> Premium Quality</div>
+    <h1>Garware & <span class="accent">Tuf Nets</span></h1>
+    <p>Authorized dealers of premium Garware and Tuf branded safety nets. Experience unmatched durability, strength, and longevity.</p>
+    <div class="hero-btns">
+      <a href="tel:9743236279" class="btn-primary"><i data-lucide="phone-call"></i> Get Free Quote</a>
+      <a href="https://wa.me/919743236279" class="btn-outline"><i data-lucide="message-circle"></i> WhatsApp Us</a>
+    </div>
+  </div>
+</section>
+
+<section class="features-section">
+  <div class="reveal" style="text-align:center;display:flex;flex-direction:column;align-items:center;">
+    <div class="section-label"><i data-lucide="star"></i> Why Our Balcony Nets</div>
+    <h2 class="section-title">Strong. Transparent. Reliable.</h2>
+  </div>
+  <div class="features-grid">
+    <div class="feature-card reveal"><div class="feature-icon"><i data-lucide="award"></i></div><h3>Branded Quality</h3><p>Genuine Garware and Tuf products known for industry-leading quality.</p></div>
+    <div class="feature-card reveal"><div class="feature-icon"><i data-lucide="clock"></i></div><h3>Maximum Lifespan</h3><p>Significantly outlasts standard nets, offering better long-term value.</p></div>
+    <div class="feature-card reveal"><div class="feature-icon"><i data-lucide="dumbbell"></i></div><h3>Superior Tensile</h3><p>Exceptional load-bearing capacity for ultimate safety.</p></div>
+    <div class="feature-card reveal"><div class="feature-icon"><i data-lucide="sun"></i></div><h3>Advanced UV Tech</h3><p>State-of-the-art UV stabilization prevents brittleness and fading.</p></div>
+    <div class="feature-card reveal"><div class="feature-icon"><i data-lucide="file-text"></i></div><h3>Manufacturer Warranty</h3><p>Backed by official warranties from the manufacturer.</p></div>
+    <div class="feature-card reveal"><div class="feature-icon"><i data-lucide="check-circle"></i></div><h3>Authenticity Guaranteed</h3><p>100% genuine products sourced directly from the brands.</p></div>
+  </div>
+</section>
+
+<section class="about-section">
+  <div class="about-grid">
+    <div class="about-img-box reveal">
+      <span class="big-icon"><i data-lucide="star"></i></span>
+      <h3>Authorized Net Dealers</h3>
+      <p>Bringing the best safety net brands in the country to your doorstep.</p>
+      <div class="stat-row">
+        <div class="stat-box"><div class="num">1000+</div><div class="lbl">Premium Installs</div></div>
+        <div class="stat-box"><div class="num">10+</div><div class="lbl">Years Exp</div></div>
+        <div class="stat-box"><div class="num">ISO</div><div class="lbl">Certified</div></div>
+      </div>
+    </div>
+    <div class="about-text reveal">
+      <div class="section-label"><i data-lucide="info"></i> About This Service</div>
+      <h2>Why Choose Garware & Tuf Nets?</h2>
+      <p>When you want absolutely no compromises on safety and longevity, Garware and Tuf nets are the definitive choice. These are the gold standard in the netting industry.</p>
+      <p>Manufactured using advanced polymer technology, these nets offer superior resistance to weather, wear and tear, ensuring your investment lasts for over a decade.</p>
+      <ul class="checklist">
+        <li><i data-lucide="check-circle-2"></i> Free site inspection and measurement</li>
+        <li><i data-lucide="check-circle-2"></i> Same-day installation available</li>
+        <li><i data-lucide="check-circle-2"></i> Transparent pricing, no hidden costs</li>
+        <li><i data-lucide="check-circle-2"></i> Custom fitted to your requirements</li>
+        <li><i data-lucide="check-circle-2"></i> Post-installation warranty included</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<section class="types-section">
+  <div class="reveal">
+    <div class="section-label"><i data-lucide="layers"></i> Variants Available</div>
+    <h2 class="section-title">Types of Balcony Safety Nets</h2>
+    <p class="section-sub">We offer different mesh sizes, colours, and materials depending on your requirement and budget.</p>
+  </div>
+  <div class="types-grid">
+    <div class="type-card reveal"><div class="type-num">01</div><div><h4>Garware Nylon Net</h4><p>The flagship product, offering exceptional strength and a near-invisible finish.</p></div></div>
+    <div class="type-card reveal"><div class="type-num">02</div><div><h4>Tuf Heavy Duty Net</h4><p>Designed for extreme conditions and high-impact requirements.</p></div></div>
+    <div class="type-card reveal"><div class="type-num">03</div><div><h4>Garware Bird Net</h4><p>Specialized anti-bird netting that is highly durable and aesthetically pleasing.</p></div></div>
+    <div class="type-card reveal"><div class="type-num">04</div><div><h4>Tuf Sports Net</h4><p>Professional grade sports netting for rigorous daily use.</p></div></div>
+  </div>
+</section>
+
+<section class="pricing-section">
+  <div class="reveal">
+    <div class="section-label"><i data-lucide="credit-card"></i> Pricing</div>
+    <h2 class="section-title">Affordable & Transparent</h2>
+    <p class="section-sub">Pricing depends on the area to be covered, net type, and floor level. We always provide a detailed quote before starting work.</p>
+  </div>
+  <div class="pricing-note reveal">
+    <span class="icon"><i data-lucide="lightbulb"></i></span>
+    <div>
+      <h4>Get an Exact Quote in Minutes</h4>
+      <p>Balcony safety net pricing typically starts from ₹12–18 per sq. ft. depending on the net type and installation complexity. Call us on <strong>9743236279</strong> or WhatsApp your measurements for an instant estimate. Free site visit available.</p>
+    </div>
+  </div>
+</section>
+
+<section class="faq-section">
+  <div class="reveal">
+    <div class="section-label"><i data-lucide="help-circle"></i> FAQ</div>
+    <h2 class="section-title">Common Questions</h2>
+  </div>
+  <div class="faq-list">
+    <div class="faq-item reveal"><div class="faq-q">Are Garware nets worth the extra cost? <span class="faq-icon"><i data-lucide="chevron-down"></i></span></div><div class="faq-a"><p>Yes. While the initial investment is slightly higher, their extended lifespan (often 10+ years) and superior strength make them more cost-effective in the long run.</p></div></div>
+    <div class="faq-item reveal"><div class="faq-q">How can I verify the nets are genuine? <span class="faq-icon"><i data-lucide="chevron-down"></i></span></div><div class="faq-a"><p>As authorized dealers, we provide authentic products. Garware and Tuf nets often have specific weaving patterns and manufacturer tags which we can demonstrate.</p></div></div>
+    <div class="faq-item reveal"><div class="faq-q">Do you provide service across the region? <span class="faq-icon"><i data-lucide="chevron-down"></i></span></div><div class="faq-a"><p>Yes! We provide our services across a wide service area. Contact us directly to check if we cover your specific locality.</p></div></div>
+  </div>
+</section>
+
+
+<!-- GALLERY -->
+<section class="gallery-section" id="gallery">
+  <div class="reveal" style="text-align:center;margin-bottom:56px;">
+    <div class="section-label" style="justify-content:center;"><i data-lucide="image"></i> Our Work</div>
+    <h2 class="section-title">Recent Installations</h2>
+    <p class="section-sub" style="margin: 0 auto;">Take a look at some of our premium safety net and invisible grill installations across various properties.</p>
+  </div>
+  <div class="gallery-grid single-row">
+    <div class="gallery-item reveal"><img src="../assets/work_images/work_1.jpg" alt="Installation Work"></div>
+    <div class="gallery-item reveal"><img src="../assets/work_images/work_10.jpg" alt="Installation Work"></div>
+    <div class="gallery-item reveal"><img src="../assets/work_images/work_13.jpg" alt="Installation Work"></div>
+    <div class="gallery-item reveal"><img src="../assets/work_images/work_17.jpg" alt="Installation Work"></div>
+    <div class="gallery-item reveal"><img src="../assets/work_images/work_18.jpg" alt="Installation Work"></div>
+  </div>
+  <div style="text-align:center;margin-top:48px;" class="reveal">
+    <a href="../work.html" class="btn-primary">View All Work</a>
+  </div>
+
+<section class="other-services">
+
+  <div class="reveal">
+    <div class="section-label"><i data-lucide="compass"></i> Explore More</div>
+    <h2 class="section-title">Our Other Services</h2>
+  </div>
+  <div class="other-grid">
+    <a href="pigeon-nets.html" class="other-card reveal"><i data-lucide="bird"></i> <span>Pigeon Safety Nets</span></a>
+    <a href="bird-protection-nets.html" class="other-card reveal"><i data-lucide="shield-alert"></i> <span>Bird Protection Nets</span></a>
+    <a href="monkey-nets.html" class="other-card reveal"><i data-lucide="paw-print"></i> <span>Monkey Safety Nets</span></a>
+    <a href="mosquito-nets.html" class="other-card reveal"><i data-lucide="bug"></i> <span>Mosquito Nets</span></a>
+    <a href="building-safety-nets.html" class="other-card reveal"><i data-lucide="building-2"></i> <span>Building Safety Nets</span></a>
+    <a href="invisible-grill.html" class="other-card reveal"><i data-lucide="lock"></i> <span>Invisible Grill</span></a>
+    <a href="cricket-nets.html" class="other-card reveal"><i data-lucide="circle-dashed"></i> <span>Cricket Practice Nets</span></a>
+    <a href="sports-nets.html" class="other-card reveal"><i data-lucide="activity"></i> <span>Sports Nets</span></a>
+  </div>
+</section>
+
+<section class="cta-section">
+  <div class="cta-box reveal">
+    <h2>Book Your Free Site Inspection Today</h2>
+    <p>Call us or WhatsApp your balcony dimensions — we'll give you an instant quote.</p>
+    <div class="cta-actions">
+      <a href="tel:9743236279" class="btn-primary"><i data-lucide="phone"></i> 9743236279</a>
+      <a href="https://wa.me/919743236279" class="btn-outline"><i data-lucide="message-circle"></i> WhatsApp</a>
+    </div>
+  </div>
+</section>
+
+
+<footer>
+  <div class="footer-grid" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 60px; margin-bottom: 60px;">
+    <div class="footer-col">
+      <h4>Services</h4>
+      <ul>
+        <li><a href="balcony-safety-nets.html"><i data-lucide="chevron-right" style="width:14px;"></i> Balcony Nets</a></li>
+        <li><a href="pigeon-nets.html"><i data-lucide="chevron-right" style="width:14px;"></i> Pigeon Nets</a></li>
+        <li><a href="bird-protection-nets.html"><i data-lucide="chevron-right" style="width:14px;"></i> Bird Protection</a></li>
+        <li><a href="monkey-nets.html"><i data-lucide="chevron-right" style="width:14px;"></i> Monkey Nets</a></li>
+        <li><a href="invisible-grill.html"><i data-lucide="chevron-right" style="width:14px;"></i> Invisible Grill</a></li>
+      </ul>
+    </div>
+    <div class="footer-col">
+      <h4>More Services</h4>
+      <ul>
+        <li><a href="building-safety-nets.html"><i data-lucide="chevron-right" style="width:14px;"></i> Building Nets</a></li>
+        <li><a href="cricket-nets.html"><i data-lucide="chevron-right" style="width:14px;"></i> Cricket Nets</a></li>
+        <li><a href="sports-nets.html"><i data-lucide="chevron-right" style="width:14px;"></i> Sports Nets</a></li>
+        <li><a href="mosquito-nets.html"><i data-lucide="chevron-right" style="width:14px;"></i> Mosquito Nets</a></li>
+        <li><a href="shade-nets.html"><i data-lucide="chevron-right" style="width:14px;"></i> Shade Nets</a></li>
+      </ul>
+    </div>
+    <div class="footer-col">
+      <h4>Contact</h4>
+      <ul>
+        <li><a href="tel:9743236279"><i data-lucide="phone" style="width:14px;"></i> 9743236279</a></li>
+        <li><a href="mailto:bhagavansafetynets@gmail.com"><i data-lucide="mail" style="width:14px;"></i> Email Us</a></li>
+        <li><a href="https://wa.me/919743236279"><i data-lucide="message-circle" style="width:14px;"></i> WhatsApp</a></li>
+      </ul>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <div style="display:flex;align-items:center;gap:12px;">
+      <div class="logo-icon" style="width:32px;height:32px;"><i data-lucide="shield-check" style="width:16px;"></i></div>
+      <span style="font-family:'Playfair Display',serif;font-weight:700;">Bhagavan Enterprise</span>
+    </div>
+    <p style="margin:0;">© 2025 Bhagavan Enterprise. All Rights Reserved.</p>
+    <div class="footer-social">
+      <a href="https://wa.me/919743236279" class="social-btn"><i data-lucide="message-circle"></i></a>
+      <a href="tel:9743236279" class="social-btn"><i data-lucide="phone"></i></a>
+    </div>
+  </div>
+</footer>
+
+
+<div class="wa-float">
+  <a href="tel:9743236279" class="call-btn"><i data-lucide="phone-call"></i></a>
+  <a href="https://wa.me/919743236279" class="wa-btn"><i data-lucide="message-circle"></i></a>
+</div>
+
+<script>
+function toggleTheme() {
+  document.body.classList.toggle('light-mode');
+  const isLight = document.body.classList.contains('light-mode');
+  const icon = document.querySelector('.theme-toggle i');
+  if(icon) {
+    icon.setAttribute('data-lucide', isLight ? 'moon' : 'sun');
+    lucide.createIcons();
+  }
+  localStorage.setItem('theme', isLight ? 'light' : 'dark');
+}
+if(localStorage.getItem('theme') === 'light') {
+  document.body.classList.add('light-mode');
+}
+</script>
+<script>
+lucide.createIcons();
+function toggleMenu() { document.getElementById('mobileNav').classList.toggle('active'); }
+const observer = new IntersectionObserver(entries => entries.forEach(e => { if(e.isIntersecting) e.target.classList.add('visible'); }), {threshold:0.1});
+document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+document.querySelectorAll('.faq-q').forEach(q => q.addEventListener('click', () => q.parentElement.classList.toggle('open')));
+</script>
+</body>
+</html>
